@@ -9,7 +9,7 @@ import (
 
 //go:embed input.txt
 var input string
-var SortedLists = common.CachedListInts(" ")
+var InputInts = common.CachedListInts(" ")
 var logger = common.Logger()
 
 func reportIsSafe(report []int, dampener int) bool {
@@ -39,7 +39,7 @@ func reportIsSafe(report []int, dampener int) bool {
 }
 
 func Part1(input string) (safe int) {
-	reports := SortedLists(input)
+	reports := InputInts(input)
 	safe = 0
 	for _, report := range reports {
 		if !reportIsSafe(report, 0) {
@@ -52,7 +52,7 @@ func Part1(input string) (safe int) {
 }
 
 func Part2(input string) (safe int) {
-	reports := SortedLists(input)
+	reports := InputInts(input)
 	safe = 0
 	for _, report := range reports {
 		if !reportIsSafe(report, 1) {
@@ -65,7 +65,7 @@ func Part2(input string) (safe int) {
 }
 
 func Day() (part1, part2 int) {
-	defer common.Timer("2024-12-01", logger.Info, false)()
+	defer common.Timer("2024-12-02", logger.Info, false)()
 	part1 = Part1(input)
 	part2 = Part2(input)
 	return
