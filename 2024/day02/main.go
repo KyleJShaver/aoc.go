@@ -38,9 +38,9 @@ func reportIsSafe(report []int, dampener int) bool {
 	return true
 }
 
-func Part1(input string) int {
+func Part1(input string) (safe int) {
 	reports := SortedLists(input)
-	safe := 0
+	safe = 0
 	for _, report := range reports {
 		if !reportIsSafe(report, 0) {
 			continue
@@ -48,12 +48,12 @@ func Part1(input string) int {
 		safe += 1
 	}
 	logger.Info(fmt.Sprintf("Part 1: %v", safe))
-	return safe
+	return
 }
 
-func Part2(input string) (score int) {
+func Part2(input string) (safe int) {
 	reports := SortedLists(input)
-	safe := 0
+	safe = 0
 	for _, report := range reports {
 		if !reportIsSafe(report, 1) {
 			continue
@@ -61,7 +61,7 @@ func Part2(input string) (score int) {
 		safe += 1
 	}
 	logger.Info(fmt.Sprintf("Part 2: %v", safe))
-	return safe
+	return
 }
 
 func Day() (part1, part2 int) {

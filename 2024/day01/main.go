@@ -38,9 +38,9 @@ func CachedSortedLists() func(input string) [][]int {
 	}
 }
 
-func Part1(input string) int {
+func Part1(input string) (difference int) {
 	lists := SortedLists(input)
-	difference := 0
+	difference = 0
 	for pos, val := range lists[0] {
 		pos_diff := val - lists[1][pos]
 		if pos_diff < 0 {
@@ -49,7 +49,7 @@ func Part1(input string) int {
 		difference += pos_diff
 	}
 	logger.Info(fmt.Sprintf("Part 1: %v", difference))
-	return difference
+	return
 }
 
 func Part2(input string) (score int) {
