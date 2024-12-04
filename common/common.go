@@ -92,3 +92,32 @@ func (tst AOCTest) Run(t *testing.T) {
 		}
 	})
 }
+
+func Grid(input string) (grid [][]string) {
+	grid = make([][]string, 0)
+	for _, row := range strings.Split(input, "\n") {
+		grid = append(grid, strings.Split(row, ""))
+	}
+	return
+}
+
+var GridCached = InputCacher(Grid)
+
+func InputCacher[IT comparable, RT any](fn func(IT) RT) func(IT) RT {
+	cache := make(map[IT]RT)
+	return func(input IT) RT {
+		if cached, ok := cache[input]; ok {
+			return cached
+		}
+		cache[input] = fn(input)
+		return cache[input]
+	}
+}
+
+func ReverseString(s string) (r string) {
+	r = ""
+	for i := len(s); i > 0; i-- {
+		r += s[i-1 : i]
+	}
+	return
+}
