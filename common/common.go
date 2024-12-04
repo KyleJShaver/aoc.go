@@ -93,6 +93,7 @@ func (tst AOCTest) Run(t *testing.T) {
 	})
 }
 
+// Converts a string into a 2D grid of characters
 func Grid(input string) (grid [][]string) {
 	grid = make([][]string, 0)
 	for _, row := range strings.Split(input, "\n") {
@@ -101,11 +102,12 @@ func Grid(input string) (grid [][]string) {
 	return
 }
 
-var GridCached = InputCacher(Grid)
+var GridCached = Cacher(Grid)
 
-func InputCacher[IT comparable, RT any](fn func(IT) RT) func(IT) RT {
-	cache := make(map[IT]RT)
-	return func(input IT) RT {
+// Provides return value caching for functions with a single [comparagle] argument.
+func Cacher[CT comparable, RT any](fn func(CT) RT) func(CT) RT {
+	cache := make(map[CT]RT)
+	return func(input CT) RT {
 		if cached, ok := cache[input]; ok {
 			return cached
 		}
@@ -114,6 +116,9 @@ func InputCacher[IT comparable, RT any](fn func(IT) RT) func(IT) RT {
 	}
 }
 
+// Reverses the [rune] contents of a [string].
+//
+// Note that there are some unicode runes may have codepoints that may cause the outputs to look a little different
 func ReverseString(s string) string {
 	r := make([]rune, 0, len(s))
 	sRunes := []rune(s)
