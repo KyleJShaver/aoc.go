@@ -114,10 +114,11 @@ func InputCacher[IT comparable, RT any](fn func(IT) RT) func(IT) RT {
 	}
 }
 
-func ReverseString(s string) (r string) {
-	r = ""
-	for i := len(s); i > 0; i-- {
-		r += s[i-1 : i]
+func ReverseString(s string) string {
+	r := make([]rune, 0, len(s))
+	sRunes := []rune(s)
+	for i := len(sRunes); i > 0; i-- {
+		r = append(r, sRunes[i-1])
 	}
-	return
+	return string(r)
 }
