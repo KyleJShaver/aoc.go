@@ -10,6 +10,8 @@ import (
 	common "github.com/KyleJShaver/aoc.go/common"
 )
 
+var year, day int = 2024, 05
+
 //go:embed input.txt
 var input string
 var logger = common.Logger()
@@ -109,7 +111,7 @@ func Part2(input string) (result int) {
 }
 
 func Day() (part1, part2 int) {
-	defer common.Timer("2024-12-05", logger.Info, false)()
+	defer common.Timer(fmt.Sprintf("%d-12-%02d", year, day), logger.Info, false)()
 	part1 = Part1(input)
 	part2 = Part2(input)
 	return
