@@ -127,3 +127,19 @@ func ReverseString(s string) string {
 	}
 	return string(r)
 }
+
+func Atoi[T string | byte](s T) int {
+	i, err := strconv.Atoi(string(s))
+	Check(err)
+	return i
+}
+
+func FilterSlice[T any](s []T, fn func(T) bool) []T {
+	filtered := make([]T, 0)
+	for _, i := range s {
+		if fn(i) {
+			filtered = append(filtered, i)
+		}
+	}
+	return filtered
+}
